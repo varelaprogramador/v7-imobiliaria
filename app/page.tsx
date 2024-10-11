@@ -3,6 +3,7 @@ import CardsDestaque from "@/components/Cards/Cards-Style-01";
 import CardsSecond from "@/components/Cards/Cards-Style-02";
 import Banner from "@/components/Banner-Style-01";
 import { Plus } from "lucide-react";
+import CarrosselImovel from "@/components/CarrosselImovel";
 
 const dataDestaque = [
   {
@@ -111,6 +112,26 @@ const bannerData = [{
 }
 
 
+];
+const imovelCarousel = [
+  {
+    id: '1',
+    titulo: 'Como preparar seu imóvel para locação?',
+    descricao: 'Colocar seu imóvel parado para a locação é uma excelente oportunidade...',
+    imagem: '/assets/Banner/imovel-2.png', 
+  },
+  {
+    id: '2',
+    titulo: 'Investindo em Imóveis de Luxo',
+    descricao: 'Saiba como investir em imóveis de alto padrão e obter um ótimo retorno...',
+    imagem: '/assets/Banner/imovel-2.png',
+  },
+  {
+    id: '3',
+    titulo: 'Tendências do Mercado Imobiliário',
+    descricao: 'Descubra as últimas tendências no mercado imobiliário para o ano...',
+    imagem: '/assets/Banner/imovel-2.png',
+  },
 ];
 
 export default function Home() {
@@ -255,6 +276,29 @@ export default function Home() {
                 Ver mais
               </button>
             </div>
+          </section>
+          <section className="w-full flex flex-col gap-8">
+            <h2 className="text-4xl">
+            <span className="font-bold">Confira as últimas notícias sobre o mercado</span>
+            <br></br>
+            imobiliário em Londrina
+            </h2>
+            <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
+
+              {cardsData.map((imovel, index) => (
+                <CardsSecond key={index} data={imovel} />
+              ))}
+
+
+            </div>
+            <div className="flex items-center justify-center">
+              <button className="bg-orange-500 p-3 rounded-md text-white  mt-4 min-w-[200px]">
+                Ver mais
+              </button>
+            </div>
+          </section>
+          <section>
+            <CarrosselImovel Imovels={imovelCarousel}></CarrosselImovel>
           </section>
         </main>
       </div>
