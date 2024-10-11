@@ -118,7 +118,7 @@ const imovelCarousel = [
     id: '1',
     titulo: 'Como preparar seu imóvel para locação?',
     descricao: 'Colocar seu imóvel parado para a locação é uma excelente oportunidade...',
-    imagem: '/assets/Banner/imovel-2.png', 
+    imagem: '/assets/Banner/imovel-2.png',
   },
   {
     id: '2',
@@ -174,18 +174,18 @@ export default function Home() {
               </label>
               <div className="flex gap-2">
 
-              <div className=" justify-self-end gap-3 rounded-md border inline-flex">
-                <button className="bg-[#F39200] p-2 rounded-md text-white">
-                  Venda
-                </button>
-                <button className=" p-2  ">
-                  Locação
-                </button>
-              </div>
+                <div className=" justify-self-end gap-3 rounded-md border inline-flex">
+                  <button className="bg-[#F39200] p-2 rounded-md text-white">
+                    Venda
+                  </button>
+                  <button className=" p-2  ">
+                    Locação
+                  </button>
+                </div>
 
-              <button className="flex gap-2 items-center border p-1 rounded-lg hover:bg-[#F39200] hover:text-white transition-colors">
-                Mais Filtro <Plus size={20}></Plus>
-              </button>
+                <button className="flex gap-2 items-center border p-1 rounded-lg hover:bg-[#F39200] hover:text-white transition-colors">
+                  Mais Filtro <Plus size={20}></Plus>
+                </button>
 
               </div>
 
@@ -279,9 +279,9 @@ export default function Home() {
           </section>
           <section className="w-full flex flex-col gap-8">
             <h2 className="text-4xl">
-            <span className="font-bold">Confira as últimas notícias sobre o mercado</span>
-            <br></br>
-            imobiliário em Londrina
+              <span className="font-bold">Confira as últimas notícias sobre o mercado</span>
+              <br></br>
+              imobiliário em Londrina
             </h2>
             <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
 
@@ -302,6 +302,39 @@ export default function Home() {
           </section>
         </main>
       </div>
+      <footer className="w-full  bg-gray-200 grid grid-cols-4 items-center justify-center max-md:grid-cols-2 max-md:gap-10 p-8 shadow-lg border">
+        <div className=" border-r-[1px] border-gray-900 text-lg max-md:p-3">
+          <Image
+            src={"/assets/logo-black.png"}
+            alt={"logo"}
+            width={250}
+            height={250}
+          ></Image>
+          <h2>(43) 3367-2587</h2>
+
+        </div>
+        <div className="text-center border-r-[1px] border-gray-900 text-lg max-md:border-none">
+          <p>Sobre a V7 Imobiliária</p>
+          <p>Explore os bairros</p>
+          <p>Nossas sedes</p>
+
+        </div>
+        <div className="text-center border-r-[1px] border-gray-900 text-lg max-md:p-3">
+          <p>Anuncie seu imóvel</p>
+          <p>Simular Financiamento</p>
+          <p>Administração de Bens</p>
+          <p>Política de Privacidade</p>
+
+        </div>
+        <div className="text-center">
+          <p>Fale Conosco</p>
+          <p>Trabalhe Conosco</p>
+          <p>WhatsApp</p>
+          <p>Login</p>
+        </div>
+        
+
+      </footer>
     </div>
   );
 }
