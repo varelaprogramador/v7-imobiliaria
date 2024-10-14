@@ -6,8 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const Carousel: React.FC = () => {
-  const autoplay = Autoplay({ delay: 3000, stopOnInteraction: false });
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [autoplay]);
+  const autoplay = Autoplay({ delay: 2500, stopOnInteraction: false });
+  const [emblaRef] = useEmblaCarousel({ loop: false }, [autoplay]);
 
   const slides = [
     {
@@ -75,10 +75,10 @@ const Carousel: React.FC = () => {
       <div className="embla__container ">
         {slides.map((slide) => (
           <div
-            className="embla__slide  "
+            className="embla__slide"
             key={slide.id}
           >
-            <div className="w-full">
+            
               <Image
                 src={slide.image}
                 alt={slide.title}
@@ -87,7 +87,7 @@ const Carousel: React.FC = () => {
                 quality={100}
                 className="object-cover w-full h-auto"
               />
-            </div>
+            
             <div className="w-full p-4 md:p-6 bg-white text-black flex flex-col items-start">
               <h2 className="text-lg md:text-xl font-bold mb-2">{slide.title}</h2>
               <p className="text-sm mb-4">{slide.description}</p>

@@ -292,7 +292,7 @@ export default function Home() {
             <h2 className="text-4xl">
               Imóveis <span className="font-bold">em destaque à venda</span>
             </h2>
-            <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
+            <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
 
               {cardsData.map((imovel, index) => (
                 <CardsSecond key={index} data={imovel} />
@@ -312,7 +312,7 @@ export default function Home() {
             <h2 className="text-4xl">
               Imóveis  <span className="font-bold">em destaque para alugar</span>
             </h2>
-            <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
+            <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
 
               {cardsData.map((imovel, index) => (
                 <CardsSecond key={index} data={imovel} />
@@ -330,7 +330,7 @@ export default function Home() {
             <h2 className="text-4xl">
               Empreendimentos e Loteamentos para<span className="font-bold">você</span>
             </h2>
-            <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
+            <div className="grid grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
 
               {cardsData.map((imovel, index) => (
                 <CardsSecond key={index} data={imovel} />
@@ -361,7 +361,7 @@ export default function Home() {
            <Carousel></Carousel>
           </section>
           
-      <footer className="w-full  bg-gray-200 grid grid-cols-4 items-center justify-center max-md:grid-cols-2 max-md:gap-10 p-8 shadow-lg border">
+      <footer className="w-full  bg-gray-200 grid grid-cols-3 items-center justify-center max-md:grid-cols-2 max-md:gap-10 p-8 shadow-lg border">
         <div className=" border-r-[1px] border-gray-900 text-lg max-md:p-3">
           <Image
             src={"/assets/logo-black.png"}
