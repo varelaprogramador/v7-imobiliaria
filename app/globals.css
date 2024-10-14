@@ -26,4 +26,45 @@
     border-bottom-width: 1px;
 
   }
+ 
+  .embla {
+    overflow: hidden;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; /* Centraliza o carrossel */
+  }
+  
+  .embla__container {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .embla__slide {
+    flex: 0 0 90%; /* Cada slide ocupa 90% da largura do contêiner */
+    max-width: 100%; /* Limita a largura máxima do slide */
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: white;
+    overflow: hidden;
+    margin: 0 auto; /* Centraliza cada slide */
+  }
+  
+  .embla__slide img {
+    width: 100%;
+    height: auto;
+  }
+  
+  @media (max-width: 768px) {
+    .embla__slide {
+      min-width: 100%; /* Ocupa toda a largura disponível em telas menores */
+    }
+  }
+  
+  
+  
+ 
+  
 }

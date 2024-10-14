@@ -1,9 +1,14 @@
+'use client';
 import Image from "next/image";
 import CardsDestaque from "@/components/Cards/Cards-Style-01";
 import CardsSecond from "@/components/Cards/Cards-Style-02";
 import Banner from "@/components/Banner-Style-01";
-import { Plus } from "lucide-react";
+import {  Minus, Plus, Search } from "lucide-react";
 import CarrosselImovel from "@/components/CarrosselImovel";
+import { useState, useEffect } from "react";
+import Carousel from "@/components/Carousel";
+
+
 
 const dataDestaque = [
   {
@@ -134,15 +139,48 @@ const imovelCarousel = [
   },
 ];
 
-export default function Home() {
-  return (
-    <div className="  font-[family-name:var(--font-inter)]">
+interface Municipio {
+  id: number;
+  nome: string;
+}
 
+
+
+
+export default function Home() {
+  const [isFilterAvanced, setFilterAvanced] = useState(false);
+
+  const [cities, setCities] =  useState<Municipio[]>([]);
+
+  useEffect(() => {
+    const fetchCities = async () => {
+      try {
+      
+        const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados/PR/municipios');
+    
+        if (!response.ok) {
+          throw new Error('Erro ao buscar municípios do estado do Paraná');
+        }
+
+        const municipiosData = await response.json();
+        setCities(municipiosData); // Armazena os municípios no estado
+        console.log('Municípios do Paraná:', municipiosData); // Log dos municípios
+      } catch (error) {
+        console.error('Erro ao buscar cidades:', error);
+      }
+    };
+
+    fetchCities();
+  }, []);
+  
+
+  return (
+    <div className="font-[family-name:var(--font-inter)]">
       <section
-        className="bg-cover bg-center min-h-[400px] relative p-[100px]"
+        className={`bg-cover bg-center relative p-[100px] transition-all duration-300 ${isFilterAvanced ? 'min-h-[700px]' : 'min-h-[450px]'}`}
         style={{ backgroundImage: "url(/assets/banner.jpeg)" }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-white  gap-4 p-6">
+        <div className="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-white gap-4 p-6">
           <Image
             src={"/assets/logo.png"}
             alt="logo"
@@ -152,7 +190,6 @@ export default function Home() {
           <div className="text-center">
             <h1 className="text-3xl font-semibold">
               Encontre a casa perfeita para <span className="text-[#F39200]">você e sua família</span>
-
             </h1>
             <h2 className="text-2xl font-light">Um novo imóvel para você e sua família com um atendimento personalizado e exclusivo</h2>
             <nav className="flex mt-4 gap-4 justify-center">
@@ -167,33 +204,63 @@ export default function Home() {
               </div>
             </nav>
           </div>
-          <div className="bg-white flex justify-start items-center w-[90vw] max-w-[600px] min-h-8 rounded-md border border-gray-300 p-3 text-black">
-            <div className="flex items-center justify-between w-full">
-              <label >
-                Encontre seu imóvel:
-              </label>
-              <div className="flex gap-2">
-
-                <div className=" justify-self-end gap-3 rounded-md border inline-flex">
-                  <button className="bg-[#F39200] p-2 rounded-md text-white">
-                    Venda
-                  </button>
-                  <button className=" p-2  ">
-                    Locação
+          <div className="bg-white grid grid-rows-1 text-black rounded-md border-gray-300">
+            <div className="flex justify-start items-center w-[90vw] max-w-[600px] min-h-8 rounded-md border border-gray-300 p-3 text-black">
+              <div className="flex items-center justify-between w-full">
+                <label>Encontre seu imóvel:</label>
+                <div className="flex gap-2">
+                  <div className="justify-self-end gap-3 rounded-md border inline-flex">
+                    <button className="bg-[#F39200] p-2 rounded-md text-white">Venda</button>
+                    <button className="p-2">Locação</button>
+                  </div>
+                  <button
+                    onClick={() => setFilterAvanced(!isFilterAvanced)}
+                    className="flex gap-2 items-center border p-1 rounded-lg hover:bg-[#F39200] hover:text-white transition-colors"
+                  >
+                    Mais Filtro {isFilterAvanced ? <Minus size={20} /> : <Plus size={20} />}
                   </button>
                 </div>
-
-                <button className="flex gap-2 items-center border p-1 rounded-lg hover:bg-[#F39200] hover:text-white transition-colors">
-                  Mais Filtro <Plus size={20}></Plus>
-                </button>
-
               </div>
-
-
             </div>
-          </div>
-        </div>
+            {isFilterAvanced && (
+              <div className={`p-4 transition-all duration-300`}>
+                <h2>Filtros Avançados:</h2>
+                <div className=" grid grid-cols-[150px_150px_200px] max-md:grid-cols-1 gap-8 mt-3">
 
+                  <select className="outline-none p-2 border border-gray-300 rounded-md ">
+                    <option value="" disabled>
+                      Tipo de imóvel
+                    </option>
+                    <option value="apartamento">Apartamento</option>
+                    <option value="casa">Casa</option>
+                    <option value="sala_comercial">Sala Comercial</option>
+                    <option value="terreno">Terreno</option>
+
+                  </select>
+                  <select className="outline-none p-2 border border-gray-300 rounded-md" id="cidade">
+                    <option value="" disabled>
+                      Selecione uma cidade
+                    </option>
+                    {cities.map((cidade) => (
+                      <option key={cidade.id} value={cidade.nome}>
+                        {cidade.nome}
+                      </option>
+                    ))}
+                  </select>
+                  <button
+                    
+                    className="flex gap-2 items-center justify-center border p-2 rounded-lg hover:bg-[#F39200] hover:text-white transition-colors"
+                  >
+                    Buscar <Search size={18}></Search>
+                  </button>
+
+
+                </div>
+              </div>
+            )}
+          </div>
+          <p>Anuncie seu imóvel gratuitamente</p>
+        </div>
       </section>
 
       <div className="grid grid-rows-[20px_1fr_20px] px-5 min-h-screen  pb-20 gap-16 max-md:px-0">
@@ -277,31 +344,23 @@ export default function Home() {
               </button>
             </div>
           </section>
-          <section className="w-full flex flex-col gap-8">
-            <h2 className="text-4xl">
+          
+         
+             
+          
+        </main>
+
+      </div>
+      <section className="w-full p-10 gap-10 flex flex-col justify-center max-md:items-center max-md:p-2">
+      <h2 className="text-4xl">
               <span className="font-bold">Confira as últimas notícias sobre o mercado</span>
               <br></br>
               imobiliário em Londrina
             </h2>
-            <div className="grid grid-cols-4 max-lg:grid-cols-2 max-md:grid-cols-1  gap-8 max-md:px-4">
-
-              {cardsData.map((imovel, index) => (
-                <CardsSecond key={index} data={imovel} />
-              ))}
-
-
-            </div>
-            <div className="flex items-center justify-center">
-              <button className="bg-orange-500 p-3 rounded-md text-white  mt-4 min-w-[200px]">
-                Ver mais
-              </button>
-            </div>
+            
+           <Carousel></Carousel>
           </section>
-          <section>
-            <CarrosselImovel Imovels={imovelCarousel}></CarrosselImovel>
-          </section>
-        </main>
-      </div>
+          
       <footer className="w-full  bg-gray-200 grid grid-cols-4 items-center justify-center max-md:grid-cols-2 max-md:gap-10 p-8 shadow-lg border">
         <div className=" border-r-[1px] border-gray-900 text-lg max-md:p-3">
           <Image
@@ -332,7 +391,7 @@ export default function Home() {
           <p>WhatsApp</p>
           <p>Login</p>
         </div>
-        
+
 
       </footer>
     </div>
