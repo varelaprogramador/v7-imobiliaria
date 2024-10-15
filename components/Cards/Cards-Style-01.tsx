@@ -1,11 +1,12 @@
 import React from "react";
-import Image from "next/image"; // Importa o componente Image
+import Image from "next/image"; 
 import { Bed, CarFront, DoorOpen, MapPin, ShowerHead, Waves} from "lucide-react";
+import Link from "next/link";
 
 interface CardProps {
     data: {
         categoria: string;
-        fundo: string; // Novo campo para a imagem de fundo
+        fundo: string; 
         nome: string;
         localizacao: string;
         quartostexto: string;
@@ -16,6 +17,7 @@ interface CardProps {
         cloasetvisib: boolean; 
         qtdvagas: number;
         qtdbanheiros: number;
+        link:string
     };
 }
 
@@ -32,10 +34,12 @@ function Card({ data }: CardProps) {
         quartosvisib,
         banheirovisb,
         piscinavisib,
-        cloasetvisib
+        cloasetvisib,
+        link
     } = data; // Desestrutura o objeto
 
     return (
+        <Link href={link}>
         <article className="relative bg-black w-[400px] h-[450px] flex flex-col justify-end text-white">
             <Image 
                 src={fundo} 
@@ -87,6 +91,7 @@ function Card({ data }: CardProps) {
                 </div>
             </div>
         </article>
+        </Link>
     );
 }
 
