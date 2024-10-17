@@ -351,6 +351,8 @@ export default function Home() {
           <br></br>
           imobiliário em Londrina
         </h2>
+
+        <CarouselSwiper />
       </section>
 
       {/* <footer className="grid w-full grid-cols-4 items-center justify-center border bg-gray-200 p-8 shadow-lg max-md:grid-cols-2 max-md:gap-10"> */}
