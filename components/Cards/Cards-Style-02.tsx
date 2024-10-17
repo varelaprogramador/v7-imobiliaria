@@ -16,7 +16,7 @@ function Card({ data }: CardProps) {
   const { categoria, fundo, nome, localizacao, condominio, venda } = data // Desestrutura o objeto
 
   return (
-    <article className="flex max-h-[600px] w-full max-w-[400px] flex-col justify-end bg-black text-black">
+    <article className="flex max-h-[600px] w-full flex-col justify-end bg-black text-black md:max-w-[400px]">
       <div
         className="min-h-[300px] w-full"
         style={{

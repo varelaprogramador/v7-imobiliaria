@@ -108,6 +108,7 @@ export default function Imovel() {
             <h3 className="text-xl">Valor:</h3>
             <h2 className="text-3xl font-bold">R$1.190.000</h2>
           </section>
+
           <section className="flex flex-col gap-8">
             <div className="grid grid-cols-5 items-center justify-center font-bold">
               <div className="flex flex-col items-center justify-center">
@@ -151,9 +152,11 @@ export default function Imovel() {
               responsabiliza por eventuais divergências ou prejuízos decorrentes
               do uso dessas informações.
             </p>
+
             <h2 className="text-xl font-bold">Comodidades do imóvel</h2>
-            <div className="max-h-[100px]">
-              <ul className="grid list-disc grid-cols-5 gap-x-8 px-4">
+
+            <div>
+              <ul className="flex list-inside list-disc flex-wrap gap-4">
                 {items.map((item, index) => (
                   <li key={index} className="mb-2">
                     {item}
@@ -161,9 +164,10 @@ export default function Imovel() {
                 ))}
               </ul>
             </div>
+
             <div>
               <h2 className="text-xl font-bold">Assista ao Vídeo</h2>
-              <div className="min-h-[300px] w-[400px] bg-slate-300"></div>
+              <div className="aspect-video max-w-[25rem] bg-slate-300" />
             </div>
           </section>
           <section className="flex w-full flex-col gap-8">
@@ -212,6 +216,7 @@ export default function Imovel() {
               <button className="flex items-center justify-center gap-2 border border-gray-500 p-2 font-semibold">
                 COMPARTILHAR <Share2 size={20}></Share2>
               </button>
+
               <button className="flex items-center justify-center gap-2 border border-gray-500 p-2 font-semibold">
                 FAVORITAR <Heart size={20}></Heart>
               </button>
@@ -298,6 +303,7 @@ export default function Imovel() {
           </div>
         </div>
       </main>
+
       <footer className="z-30 grid w-full grid-cols-4 items-center justify-center border bg-gray-200 p-8 shadow-lg max-md:grid-cols-2 max-md:gap-10">
         <div className="flex flex-col gap-4 border-r-[1px] border-gray-900 text-lg max-md:p-3">
           <Image
